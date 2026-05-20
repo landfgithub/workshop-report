@@ -1,0 +1,949 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>第十期·业绩提升工作坊 | 活动复盘报告</title>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@400;600;700&family=Noto+Sans+SC:wght@300;400;500;700&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --deep-green: #1a3a2a;
+    --gold: #c9a84c;
+    --light-gold: #e8d5a0;
+    --cream: #f7f3e8;
+    --dark-text: #2d2d2d;
+    --muted: #6b7c6b;
+  }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
+  body {
+    font-family: 'Noto Sans SC', sans-serif;
+    background: var(--cream);
+    color: var(--dark-text);
+    line-height: 1.8;
+    overflow-x: hidden;
+  }
+
+  /* ===== Page System ===== */
+  .page {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 70px 44px;
+    position: relative;
+    opacity: 0;
+    transform: translateY(30px);
+    transition: opacity 0.8s ease, transform 0.8s ease;
+  }
+  .page.visible {
+    opacity: 1;
+    transform: translateY(0);
+  }
+  .page-inner {
+    max-width: 1100px;
+    width: 100%;
+  }
+
+  /* ===== Page 1: Cover ===== */
+  #page1 {
+    background: linear-gradient(135deg, var(--deep-green) 0%, #0f2418 50%, #1a3a2a 100%);
+    color: #fff;
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+  }
+  #page1::before {
+    content: '';
+    position: absolute;
+    top: -50%;
+    left: -50%;
+    width: 200%;
+    height: 200%;
+    background: radial-gradient(circle at 30% 70%, rgba(201,168,76,0.08) 0%, transparent 50%),
+                radial-gradient(circle at 70% 30%, rgba(201,168,76,0.05) 0%, transparent 40%);
+    animation: bgFloat 20s ease-in-out infinite;
+  }
+  @keyframes bgFloat {
+    0%, 100% { transform: translate(0, 0); }
+    50% { transform: translate(-3%, 3%); }
+  }
+  .cover-content {
+    position: relative;
+    z-index: 1;
+  }
+  .cover-badge {
+    display: inline-block;
+    border: 1px solid var(--gold);
+    color: var(--gold);
+    padding: 10px 32px;
+    font-size: 25px;
+    letter-spacing: 5px;
+    margin-bottom: 36px;
+    border-radius: 2px;
+  }
+  .cover-title {
+    font-family: 'Noto Serif SC', serif;
+    font-size: 62px;
+    font-weight: 700;
+    line-height: 1.3;
+    margin-bottom: 20px;
+    background: linear-gradient(135deg, #fff 0%, var(--light-gold) 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+  .cover-subtitle {
+    font-size: 27px;
+    color: var(--light-gold);
+    font-weight: 300;
+    margin-bottom: 52px;
+    letter-spacing: 3px;
+  }
+  .cover-meta {
+    display: flex;
+    justify-content: center;
+    gap: 44px;
+    flex-wrap: wrap;
+    color: rgba(255,255,255,0.65);
+    font-size: 25px;
+  }
+  .cover-meta span {
+    padding: 10px 24px;
+    border-left: 2px solid var(--gold);
+  }
+  .cover-divider {
+    width: 80px;
+    height: 2px;
+    background: linear-gradient(90deg, transparent, var(--gold), transparent);
+    margin: 36px auto;
+  }
+  .scroll-hint {
+    position: absolute;
+    bottom: 44px;
+    left: 50%;
+    transform: translateX(-50%);
+    color: rgba(255,255,255,0.35);
+    font-size: 15px;
+    letter-spacing: 4px;
+    animation: bounce 2s infinite;
+  }
+  @keyframes bounce {
+    0%, 100% { transform: translateX(-50%) translateY(0); }
+    50% { transform: translateX(-50%) translateY(-8px); }
+  }
+
+  /* ===== Section Headers ===== */
+  .section-label {
+    font-size: 15px;
+    letter-spacing: 6px;
+    color: var(--gold);
+    text-transform: uppercase;
+    margin-bottom: 14px;
+    font-weight: 600;
+  }
+  .section-title {
+    font-family: 'Noto Serif SC', serif;
+    font-size: 46px;
+    font-weight: 700;
+    color: var(--deep-green);
+    margin-bottom: 20px;
+    line-height: 1.4;
+  }
+  .section-desc {
+    font-size: 25px;
+    color: var(--muted);
+    max-width: 660px;
+    margin-bottom: 54px;
+  }
+  .title-line {
+    width: 70px;
+    height: 3px;
+    background: var(--gold);
+    margin: 20px 0 32px;
+  }
+
+  /* ===== Page 2: Course Introduction ===== */
+  #page2 {
+    background: linear-gradient(180deg, #fff 0%, var(--cream) 100%);
+  }
+  .intro-flow {
+    display: flex;
+    flex-direction: column;
+    gap: 40px;
+  }
+  .intro-step {
+    display: flex;
+    align-items: flex-start;
+    gap: 28px;
+    position: relative;
+  }
+  .intro-step-num {
+    flex-shrink: 0;
+    width: 56px;
+    height: 56px;
+    background: linear-gradient(135deg, var(--deep-green), #2a5540);
+    color: #fff;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 24px;
+    font-weight: 700;
+    box-shadow: 0 8px 24px rgba(26,58,42,0.20);
+  }
+  .intro-step-content {
+    flex: 1;
+    padding-top: 10px;
+  }
+  .intro-step-content h4 {
+    font-size: 25px;
+    color: var(--deep-green);
+    margin-bottom: 12px;
+    font-weight: 600;
+  }
+  .intro-step-content p {
+    font-size: 20px;
+    color: var(--dark-text);
+    line-height: 1.9;
+  }
+
+  /* 视频卡片区域 */
+  .video-section {
+    background: linear-gradient(145deg, #fdfdfb, #f5f2ea);
+    border-radius: 18px;
+    padding: 38px 36px;
+    border: 1px solid #eee5d3;
+    margin-top: 8px;
+  }
+  .video-section h4 {
+    font-family: 'Noto Serif SC', serif;
+    font-size: 26px;
+    color: var(--deep-green);
+    margin-bottom: 28px;
+    text-align: center;
+  }
+  .video-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 24px;
+  }
+  .video-card {
+    background: #fff;
+    border-radius: 14px;
+    overflow: hidden;
+    box-shadow: 0 4px 16px rgba(0,0,0,0.07);
+    transition: all 0.3s ease;
+    border: 1px solid #eee;
+  }
+  .video-card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 12px 32px rgba(26,58,42,0.12);
+  }
+  .video-thumb {
+    width: 100%;
+    aspect-ratio: 16/9;
+    background: linear-gradient(135deg, var(--deep-green) 0%, #2a5540 50%, #3d6b54 100%);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+  }
+  .play-btn {
+    width: 52px;
+    height: 52px;
+    background: rgba(255,255,255,0.9);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 22px;
+    color: var(--deep-green);
+    box-shadow: 0 4px 16px rgba(0,0,0,0.15);
+  }
+  .video-card-body {
+    padding: 18px 16px;
+  }
+  .video-card-body h5 {
+    font-size: 19px;
+    color: var(--deep-green);
+    margin-bottom: 6px;
+    font-weight: 600;
+  }
+  .video-card-body p {
+    font-size: 16px;
+    color: var(--muted);
+    line-height: 1.65;
+  }
+
+  /* 学员观点展示 */
+  .discussion-section {
+    margin-top: 8px;
+  }
+  .discussion-section h4 {
+    font-family: 'Noto Serif SC', serif;
+    font-size: 26px;
+    color: var(--deep-green);
+    margin-bottom: 28px;
+    text-align: center;
+  }
+  .quote-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 20px;
+  }
+  .quote-card {
+    background: #fff;
+    border-radius: 14px;
+    padding: 28px 24px;
+    border-left: 4px solid var(--gold);
+    box-shadow: 0 4px 16px rgba(0,0,0,0.06);
+    transition: all 0.3s ease;
+    position: relative;
+  }
+  .quote-card:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 10px 28px rgba(26,58,42,0.10);
+  }
+  .quote-mark {
+    font-size: 36px;
+    color: var(--gold);
+    opacity: 0.4;
+    line-height: 1;
+    margin-bottom: 8px;
+  }
+  .quote-card p {
+    font-size: 18px;
+    color: var(--dark-text);
+    line-height: 1.85;
+    font-style: italic;
+  }
+  .quote-author {
+    margin-top: 14px;
+    font-size: 15px;
+    color: var(--gold);
+    font-weight: 600;
+    letter-spacing: 1px;
+  }
+
+  /* ===== Page 3: Six-in-One + Sharing ===== */
+  #page3 { background: #fff; }
+  .loop-diagram {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 20px;
+    margin-bottom: 60px;
+  }
+  .loop-item {
+    background: linear-gradient(145deg, #f8faf7, #f0f5ee);
+    border: 1px solid #dde8dd;
+    border-radius: 14px;
+    padding: 34px 24px;
+    text-align: center;
+    transition: all 0.3s ease;
+    position: relative;
+  }
+  .loop-item:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 12px 32px rgba(26,58,42,0.10);
+    border-color: var(--gold);
+  }
+  .loop-num {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 42px;
+    height: 42px;
+    background: var(--deep-green);
+    color: #fff;
+    border-radius: 50%;
+    font-weight: 700;
+    font-size: 18px;
+    margin-bottom: 18px;
+  }
+  .loop-item h3 {
+    font-size: 21px;
+    color: var(--deep-green);
+    margin-bottom: 10px;
+    font-weight: 600;
+  }
+  .loop-item p {
+    font-size: 20px;
+    color: var(--muted);
+    line-height: 1.7;
+  }
+  .sharing-section h3 {
+    font-family: 'Noto Serif SC', serif;
+    font-size: 32px;
+    color: var(--deep-green);
+    margin-bottom: 32px;
+    text-align: center;
+  }
+  .sharing-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 22px;
+  }
+  .share-card {
+    border-radius: 12px;
+    overflow: hidden;
+    box-shadow: 0 4px 16px rgba(0,0,0,0.08);
+    transition: all 0.3s ease;
+  }
+  .share-card:hover {
+    transform: translateY(-6px) scale(1.02);
+    box-shadow: 0 16px 40px rgba(26,58,42,0.15);
+  }
+  .share-card img {
+    width: 100%;
+    aspect-ratio: 3/4;
+    object-fit: cover;
+    display: block;
+  }
+  .share-card-label {
+    text-align: center;
+    padding: 12px;
+    background: var(--deep-green);
+    color: var(--light-gold);
+    font-size: 16px;
+    font-weight: 600;
+  }
+
+  /* ===== Page 4: Zhang Teacher ===== */
+  #page4 { background: var(--cream); }
+  .method-flow {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 24px;
+    margin-bottom: 50px;
+  }
+  .method-step {
+    text-align: center;
+    position: relative;
+  }
+  .method-step:not(:last-child)::after {
+    content: '';
+    position: absolute;
+    top: 33px;
+    right: -12px;
+    width: 20px;
+    height: 2px;
+    background: var(--gold);
+  }
+  .step-icon {
+    width: 66px;
+    height: 66px;
+    background: linear-gradient(135deg, var(--deep-green), #2a5540);
+    color: #fff;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0 auto 20px;
+    font-size: 30px;
+    box-shadow: 0 8px 24px rgba(26,58,42,0.25);
+  }
+  .method-step h4 {
+    font-size: 22px;
+    color: var(--deep-green);
+    margin-bottom: 10px;
+    font-weight: 600;
+  }
+  .method-step p {
+    font-size: 16px;
+    color: var(--muted);
+    line-height: 1.8;
+  }
+  .zhang-gallery {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    gap: 20px;
+    margin-top: 40px;
+  }
+  .zhang-gallery .gallery-item {
+    border-radius: 14px;
+    overflow: hidden;
+    box-shadow: 0 8px 28px rgba(0,0,0,0.10);
+    transition: all 0.4s ease;
+  }
+  .zhang-gallery .gallery-item:hover {
+    transform: scale(1.03);
+    box-shadow: 0 16px 44px rgba(26,58,42,0.20);
+  }
+  .zhang-gallery .gallery-item img {
+    width: 100%;
+    aspect-ratio: 4/3;
+    object-fit: cover;
+    display: block;
+  }
+
+  /* ===== Page 5: Auction + EFT ===== */
+  #page5 { background: #fff; }
+  .dual-section {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 52px;
+  }
+  .dual-block {
+    background: linear-gradient(145deg, #fdfdfb, #f5f2ea);
+    border-radius: 18px;
+    padding: 42px;
+    border: 1px solid #eee5d3;
+  }
+  .dual-block h3 {
+    font-family: 'Noto Serif SC', serif;
+    font-size: 29px;
+    color: var(--deep-green);
+    margin-bottom: 24px;
+    padding-bottom: 14px;
+    border-bottom: 2px solid var(--gold);
+  }
+  .rule-list {
+    list-style: none;
+    counter-reset: rule;
+  }
+  .rule-list li {
+    counter-increment: rule;
+    padding: 14px 0 14px 46px;
+    position: relative;
+    font-size: 17px;
+    line-height: 1.7;
+    color: var(--dark-text);
+    border-bottom: 1px dashed #ddd;
+  }
+  .rule-list li:last-child { border-bottom: none; }
+  .rule-list li::before {
+    content: counter(rule);
+    position: absolute;
+    left: 0;
+    top: 13px;
+    width: 30px;
+    height: 30px;
+    background: var(--deep-green);
+    color: #fff;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 16px;
+    font-weight: 700;
+  }
+  .eft-intro {
+    font-size: 17px;
+    line-height: 2;
+    color: var(--dark-text);
+    margin-bottom: 22px;
+  }
+  .eft-steps {
+    background: #fff;
+    border-radius: 12px;
+    padding: 24px;
+    border-left: 4px solid var(--gold);
+  }
+  .eft-steps h4 {
+    font-size: 18px;
+    color: var(--deep-green);
+    margin-bottom: 14px;
+  }
+  .eft-steps ol {
+    padding-left: 24px;
+    font-size: 16px;
+    color: var(--muted);
+    line-height: 2.1;
+  }
+  .eft-insight {
+    margin-top: 22px;
+    padding: 20px;
+    background: linear-gradient(135deg, rgba(201,168,76,0.1), rgba(201,168,76,0.05));
+    border-radius: 12px;
+    font-size: 16px;
+    color: var(--dark-text);
+    font-style: italic;
+    line-height: 1.8;
+  }
+
+  /* ===== Page 6: Summary ===== */
+  #page6 {
+    background: linear-gradient(180deg, var(--cream) 0%, #ede9dc 100%);
+  }
+  .summary-text {
+    background: #fff;
+    border-radius: 18px;
+    padding: 46px 50px;
+    margin-bottom: 46px;
+    box-shadow: 0 4px 20px rgba(0,0,0,0.06);
+    border-top: 4px solid var(--gold);
+  }
+  .summary-text h3 {
+    font-family: 'Noto Serif SC', serif;
+    font-size: 29px;
+    color: var(--deep-green);
+    margin-bottom: 24px;
+  }
+  .summary-text p {
+    font-size: 19px;
+    line-height: 2.1;
+    color: var(--dark-text);
+    margin-bottom: 12px;
+  }
+  .summary-grid {
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    gap: 20px;
+  }
+  .summary-img {
+    border-radius: 12px;
+    overflow: hidden;
+    box-shadow: 0 6px 24px rgba(0,0,0,0.10);
+    transition: all 0.4s ease;
+  }
+  .summary-img:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 20px 48px rgba(26,58,42,0.18);
+  }
+  .summary-img img {
+    width: 100%;
+    aspect-ratio: 3/4;
+    object-fit: cover;
+    display: block;
+  }
+  .footer-tagline {
+    text-align: center;
+    margin-top: 52px;
+    padding: 34px;
+    background: var(--deep-green);
+    border-radius: 12px;
+    color: #fff;
+  }
+  .footer-tagline .tagline-zh {
+    font-family: 'Noto Serif SC', serif;
+    font-size: 34px;
+    font-weight: 700;
+    margin-bottom: 10px;
+  }
+  .footer-tagline .tagline-en {
+    font-size: 17px;
+    color: var(--light-gold);
+    letter-spacing: 4px;
+  }
+
+  /* Responsive */
+  @media (max-width: 900px) {
+    .video-grid { grid-template-columns: repeat(2, 1fr); }
+    .quote-grid { grid-template-columns: repeat(2, 1fr); }
+    .intro-step { gap: 20px; }
+    .intro-step-num { width:48px;height:48px;font-size:20px; }
+    .intro-step-content h4 { font-size: 22px; }
+    .intro-step-content p { font-size: 18px; }
+    .loop-diagram { grid-template-columns: repeat(2, 1fr); }
+    .sharing-grid { grid-template-columns: repeat(2, 1fr); }
+    .method-flow { grid-template-columns: repeat(2, 1fr); }
+    .method-step:nth-child(2)::after { display: none; }
+    .method-step:last-child::after { display: none; }
+    .zhang-gallery { grid-template-columns: 1fr; }
+    .dual-section { grid-template-columns: 1fr; }
+    .summary-grid { grid-template-columns: repeat(3, 1fr); }
+    .cover-title { font-size: 42px; }
+    .section-title { font-size: 34px; }
+    .cover-subtitle { font-size: 22px; }
+    .section-desc { font-size: 17px; }
+  }
+  @media (max-width: 500px) {
+    .page { padding: 48px 24px; }
+    .video-grid { grid-template-columns: 1fr; }
+    .quote-grid { grid-template-columns: 1fr; }
+    .intro-step { flex-direction: column; align-items: center; text-align: center; }
+    .intro-step-content { padding-top: 16px; }
+    .loop-diagram { grid-template-columns: 1fr; }
+    .sharing-grid { grid-template-columns: 1fr; }
+    .method-flow { grid-template-columns: 1fr; }
+    .method-step::after { display: none !important; }
+    .summary-grid { grid-template-columns: repeat(2, 1fr); }
+    .cover-title { font-size: 34px; }
+    .section-title { font-size: 28px; }
+  }
+</style>
+</head>
+<body>
+
+<!-- ==================== PAGE 1: COVER ==================== -->
+<section class="page visible" id="page1">
+  <div class="cover-content">
+    <div class="cover-badge">朱曼吉文化 · 第十期</div>
+    <h1 class="cover-title">业绩提升工作坊<br>活动复盘报告</h1>
+    <p class="cover-subtitle">Sales Performance Workshop · After-Action Review</p>
+    <div class="cover-divider"></div>
+    <div class="cover-meta">
+      
+      <span>主理人 · 徐丹</span>
+	   <span>特邀嘉宾 · 张老师</span>
+	   <span>2026年5月17日</span>
+     
+    </div>
+   
+  </div>
+ 
+</section>
+
+<!-- ==================== PAGE 2: 课程引入环节 ==================== -->
+<section class="page" id="page2">
+  <div class="page-inner">
+    <p class="section-label">Part 01</p>
+    <h2 class="section-title">课程引入 · 破冰启思</h2>
+    <div class="title-line"></div>
+    <p class="section-desc">从问题出发，用视频唤醒思考，让每个人重新定义"销售"。</p>
+
+    <div class="intro-flow">
+      <!-- 步骤1：提问 -->
+      <div class="intro-step">
+        <div class="intro-step-num">❓</div>
+        <div class="intro-step-content">
+          <h4>抛出问题</h4>
+          <p>活动伊始，<strong>徐丹老师</strong>首先向所有参与者抛出了一个看似简单却值得深思的问题：<br><strong style="color:var(--deep-green);font-size:22px;">"你们觉得，什么是销售？"</strong>，然后选取了三段风格各异的销售相关视频，引导大家从不同角度理解销售的内涵。</p>
+        </div>
+      </div>     	  
+	   <div class="sharing-section">     
+	  
+      <div class="sharing-grid">
+        <div class="share-card">
+          <img src="assets/111.png" alt="学员经验分享 1" loading="lazy">
+          <div class="share-card-label">视频 ①</div>
+        </div>
+         <div class="share-card">
+          <img src="assets/222.png" alt="学员经验分享 1" loading="lazy">
+          <div class="share-card-label">视频 ②</div>
+        </div>
+		 <div class="share-card">
+          <img src="assets/333.png" alt="学员经验分享 1" loading="lazy">
+          <div class="share-card-label">视频 ③</div>
+        </div>
+       
+      </div>
+    </div>
+	  
+     
+ <div class="sharing-section">
+      <h3>✦ 大家对于销售的心得 ✦</h3>
+      <div class="sharing-grid">
+        <div class="share-card">
+          <img src="assets/share_1.jpg" alt="学员经验分享 1" loading="lazy">
+          <div class="share-card-label">分享 ①</div>
+        </div>
+        <div class="share-card">
+          <img src="assets/share_2.png" alt="学员经验分享 2" loading="lazy">
+          <div class="share-card-label">分享 ②</div>
+        </div>
+        <div class="share-card">
+          <img src="assets/share_3.jpg" alt="学员经验分享 3" loading="lazy">
+          <div class="share-card-label">分享 ③</div>
+        </div>
+        <div class="share-card">
+          <img src="assets/share_4.jpg" alt="学员经验分享 4" loading="lazy">
+          <div class="share-card-label">分享 ④</div>
+        </div>
+      </div>
+    </div>
+     
+    </div>
+  </div>
+</section>
+
+<!-- ==================== PAGE 3: SIX-IN-ONE LOOP + SHARING ==================== -->
+<section class="page" id="page3">
+  <div class="page-inner">
+    <p class="section-label">Part 02</p>
+    <h2 class="section-title">六位一体 · 完整销售闭环</h2>
+    <div class="title-line"></div>
+    <p class="section-desc">从开发客户到复盘优化，构建可复制的系统化销售流程。</p>
+
+    <div class="loop-diagram">
+     
+	   <div class="loop-item">
+        <div class="loop-num">1</div>
+        <h3>设定目标</h3>
+        <p>品质目标非业绩目标</p>
+      </div>
+	   <div class="loop-item">
+        <div class="loop-num">2</div>
+        <h3>开发客户</h3>
+        <p>列名单 / 转介绍 / 陌生拜访</p>
+      </div>
+      <div class="loop-item">
+        <div class="loop-num">3</div>
+        <h3>安排约访</h3>
+        <p>微信 / 电话 / 当面约见</p>
+      </div>
+      <div class="loop-item">
+        <div class="loop-num">4</div>
+        <h3>面谈促成</h3>
+        <p>解答疑问 + 促成交易</p>
+      </div>
+      <div class="loop-item">
+        <div class="loop-num">5</div>
+        <h3>跟踪服务</h3>
+        <p>完善服务 + 了解需求</p>
+      </div>     
+      <div class="loop-item">
+        <div class="loop-num">6</div>
+        <h3>总结经验</h3>
+        <p>成功之处 + 可改进部分</p>
+      </div>
+    </div>
+
+   
+  </div>
+</section>
+
+<!-- ==================== PAGE 4: ZHANG TEACHER ==================== -->
+<section class="page" id="page4">
+  <div class="page-inner">
+    <p class="section-label">Part 03</p>
+    <h2 class="section-title">张老师的销售方法论</h2>
+    <div class="title-line"></div>
+    <p class="section-desc">四步走战略——从诊断问题到量身定制，让每一单都有章法。</p>
+
+    <div class="method-flow">
+      <div class="method-step">
+        <div class="step-icon">🔍</div>
+        <h4>先诊断</h4>
+        <p>深入了解客户的真实痛点和需求<br>不急于推销，先做"医生"</p>
+      </div>
+      <div class="method-step">
+        <div class="step-icon">📋</div>
+        <h4>做方案</h4>
+        <p>基于诊断结果定制解决方案<br>方案要有针对性，拒绝模板化</p>
+      </div>
+      <div class="method-step">
+        <div class="step-icon">🤝</div>
+        <h4>获信任</h4>
+        <p>用专业能力和真诚态度建立信任<br>信任是成交的基石</p>
+      </div>
+      <div class="method-step">
+        <div class="step-icon">🎯</div>
+        <h4>带团队</h4>
+        <p>根据学员的个性和实际情况制定针对策略，灵活应变，因人而异</p>
+      </div>
+    </div>
+
+    <div class="zhang-gallery" style="display:flex;justify-content:center;">
+      <div class="gallery-item" style="max-width:500px;">
+        <img src="assets/cartoon-user/cartoon_zhang_1.png" alt="张老师分享现场" loading="lazy">
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ==================== PAGE 5: AUCTION + EFT ==================== -->
+<section class="page" id="page5">
+  <div class="page-inner">
+    <p class="section-label">Part 04</p>
+    <h2 class="section-title">人生拍卖会 & EFT轻疗愈</h2>
+    <div class="title-line"></div>
+    <p class="section-desc">在游戏中觉察价值观，在轻敲中释放内在阻碍。</p>
+
+    <div class="dual-section">
+      <!-- 左侧：人生拍卖会 -->
+      <div class="dual-block">
+        <h3>🪙 人生拍卖会</h3>
+        <ul class="rule-list">
+          <li>每人100万基金，不可透支、不可借贷</li>
+          <li>每件拍品底价起拍，加价幅度5万/倍数</li>
+          <li>喊价举手，并大声报出价格</li>
+          <li>喊价三次无人加价，锤响成交</li>
+          <li>若第三次两人同价，猜拳决定归属</li>
+          <li>一经成交，绝不退换</li>
+        </ul>
+        <p style="font-size:16px;color:var(--muted);margin-top:18px;line-height:1.9;">
+          通过模拟拍卖游戏，让参与者在有限资源下做出选择，深刻体会什么对自己最重要——健康？爱情？事业？自由？
+        </p>
+      </div>
+
+      <!-- 右侧：EFT疗愈 -->
+      <div class="dual-block">
+        <h3>💚 EFT情绪释放技术</h3>
+        <p class="eft-intro">
+          <strong>EFT（Emotional Freedom Techniques）</strong>又称"轻疗愈"（The Tapping Solution），
+          是一种结合中医经络穴位敲击与心理学的身心调节技术。
+        </p>
+        <div class="eft-steps">
+          <h4>操作步骤</h4>
+          <ol>
+            <li><strong>前测打分：</strong>对不舒服的感受进行0-10分自评</li>
+            <li><strong>三句话引导：</strong>"虽然我……我完完全全地爱和接纳我自己"</li>
+            <li><strong>轻敲穴位：</strong>边敲击穴位边说出三句话，两轮后重新评分</li>
+          </ol>
+        </div>
+        <div class="eft-insight">
+          💡 现场参与者通过回顾销售过程中的不适感，识别出深层信念如"销售低贱""销售没底线"等，
+          再用EFT逐一释放清理，实现<strong>"销售有E更有益"</strong>的蜕变。
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ==================== PAGE 6: SUMMARY ==================== -->
+<section class="page" id="page6">
+  <div class="page-inner">
+    <p class="section-label">Part 05</p>
+    <h2 class="section-title">活动总结与精彩瞬间</h2>
+    <div class="title-line"></div>
+
+    <div class="summary-text">
+      <h3>📝 活动综述</h3>
+      <p>
+        本次工作坊融合了<span style="color:var(--gold);font-weight:600;">实战方法论</span>、<span style="color:var(--gold);font-weight:600;">互动体验</span>和<span style="color:var(--gold);font-weight:600;">心理疗愈</span>三大模块。
+        通过提问和视频引发大家对销售的思考；六位一体销售闭环帮助大家建立了系统化思维；张老师带来的"先诊断→做方案→获信任→带团队"分享，
+        为参与者提供了清晰的行动框架；
+        人生拍卖会在轻松氛围中引发了对价值排序的深度思考；
+        而EFT轻疗愈环节则帮助参与者直面并释放了内心对销售的负面信念。
+      </p>
+      <p>
+        一天的活动不仅收获了知识和技能，更重要的是——每个人都在这里找到了突破自我的勇气。
+        <strong>销售不是低贱的，而是一种值得骄傲的能力。</strong>
+      </p>
+    </div>
+
+    <div class="summary-grid" style="grid-template-columns: repeat(6, 1fr);">
+      <div class="summary-img">
+        <img src="assets/cartoon-user/cartoon_scene_6.png" alt="活动现场 主理人分享" loading="lazy">
+      </div>
+      <div class="summary-img">
+        <img src="assets/cartoon-user/cartoon_scene_1.png" alt="活动现场 1" loading="lazy">
+      </div>
+      <div class="summary-img">
+        <img src="assets/cartoon-user/cartoon_scene_2.png" alt="活动现场 2" loading="lazy">
+      </div>
+      <div class="summary-img">
+        <img src="assets/cartoon-user/cartoon_scene_3.png" alt="活动现场 3" loading="lazy">
+      </div>
+      <div class="summary-img">
+        <img src="assets/cartoon-user/cartoon_scene_4.png" alt="活动现场 4" loading="lazy">
+      </div>
+      <div class="summary-img">
+        <img src="assets/cartoon-user/cartoon_scene_5.png" alt="活动现场 5" loading="lazy">
+      </div>
+    </div>
+
+    <div class="footer-tagline">
+      <p class="tagline-zh">销售有E更有益</p>
+      <p class="tagline-en">SALES WITH EFT · BETTER RESULTS</p>
+    </div>
+  </div>
+</section>
+
+<!-- Scroll Animation -->
+<script>
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('visible');
+      }
+    });
+  }, { threshold: 0.15 });
+
+  document.querySelectorAll('.page').forEach(page => observer.observe(page));
+</script>
+</body>
+</html>
